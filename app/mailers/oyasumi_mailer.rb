@@ -2,7 +2,7 @@ class OyasumiMailer < ActionMailer::Base
   default from: "oyasumi@example.com"
   
   def oyasumi_mail(user)
-    
+
     your_mail = nil
     if user != nil 
       
@@ -26,8 +26,10 @@ class OyasumiMailer < ActionMailer::Base
       if messages.count > 0 
 
         message_number = rand(messages.count)
+        @url = "http://oyasumimail.herokuapp.com/messages/%s/edit" % messages[message_number].id
+
         your_mail = mail(:to => user.email , :subject => messages[message_number].title,
-                                             :body => messages[message_number].body,
+                                             :body => (messages[message_number].body + "\n\n Link -> " + @url),
                                              :from => "icoxfog417@gmail.com")
         
       end      

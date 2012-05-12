@@ -12,18 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :件名 %>
+    <% if current_user.id == @message.user_id  %>
+	    <%= f.text_field :title , :class => 'title-field'%>
+    <% else %>
+	    <%= f.text_field :title , :class => 'title-field' , :readonly => 'readonly'%>
+    <% end %>
+
   </div>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.label :本文 %>
+
+    <% if current_user.id == @message.user_id %>
+	    <%= f.text_area :body , :class => 'body-field'%>
+    <% else %>
+	    <%= f.text_area :body , :class => 'body-field', :readonly => 'readonly'%>
+    <% end %>
   </div>
   <div class="field">
-    <%= f.label :evaluate %><br />
-    <%= f.number_field :evaluate %>
+    <%= f.label :みんなのイイね！ %>
+	<%= f.number_field :evaluate , :readonly => 'readonly'%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+	<% if current_user.id == @message.user_id %>
+	    <%= f.submit :class => 'btn btn-primary' %>
+	<% else %>
+	    <%= f.submit 'いいね！', :class => 'btn btn-primary' %>
+    <% end %>
+	
   </div>
 <% end %>
