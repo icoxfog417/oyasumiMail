@@ -28,6 +28,7 @@ class MessagesController < ApplicationController
   # GET /messages/new.json
   def new
     @message = Message.new
+    @message.message_attribute = MessageAttribute.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +46,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(params[:message])
+    @message.message_attribute = MessageAttribute.new
     @message.user_id = current_user.id
 
     respond_to do |format|

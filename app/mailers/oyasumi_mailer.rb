@@ -1,23 +1,32 @@
 class OyasumiMailer < ActionMailer::Base
-  #default from: "oyasumi@example.com"
+  default from: "oyasumi@example.com"
   
   def oyasumi_mail(user)
     
     your_mail = nil
-    if user != nil && user.user_attribute != nil
+    if user != nil 
+      
+      attr = nil
+      if user.user_attribute == nil 
+        attr = UserAttribute.new
+      end
       
       #get message , your message is not target
-      messages = Message.all(:conditions => [  make_condition("match_attributes.sex",user.user_attribute.sex) + "and" + 
-                                               make_condition("match_attributes.age_range",user.user_attribute.age_range) + "and" +
+      messages = Message.all(:conditions => [  make_condition("match_attributes.sex",attr.sex) + "and" + 
+                                               make_condition("match_attributes.age_range",attr.age_range) + "and" +
                                                " messages.user_id != ? " ,
-                                               user.user_attribute.sex,
-                                               user.user_attribute.age_range,
+                                               attr.sex,
+                                               attr.age_range,
                                                user.id
                                              ],
                                              :joins => :message_attribute
                              )
       
       #make mail. message is selected by random !
+      puts "get message is ... "
+      puts messages
+      puts "ok?"
+      
       if messages.count > 0 
 
         message_number = rand(messages.count)
@@ -25,10 +34,9 @@ class OyasumiMailer < ActionMailer::Base
                                              :body => messages[message_number].body,
                                              :from => "icoxfog417@gmail.com")
         
-      end
-    
+      end      
     end
-
+      
       return your_mail    
   end
   

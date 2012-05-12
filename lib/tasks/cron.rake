@@ -8,8 +8,11 @@ task :cron  => :environment do
         break; #for free limit ...
       end
 
-      OyasumiMailer.oyasumi_mail(u).deliver()
-      i += 1
+      mail = OyasumiMailer.oyasumi_mail(u)
+      if mail != nil || mail.to != nil 
+        mail.deliver()
+        i += 1
+      end
 
     end
        
