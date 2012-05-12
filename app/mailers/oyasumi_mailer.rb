@@ -1,8 +1,8 @@
 class OyasumiMailer < ActionMailer::Base
-  default from: "oyasumi@example.com"
+  #default from: "oyasumi@example.com"
   
   def oyasumi_mail(user)
-
+    
     your_mail = nil
     if user != nil && user.user_attribute != nil
       
@@ -22,7 +22,8 @@ class OyasumiMailer < ActionMailer::Base
 
         message_number = rand(messages.count)
         your_mail = mail(:to => user.email , :subject => messages[message_number].title,
-                                             :body => messages[message_number].body)
+                                             :body => messages[message_number].body,
+                                             :from => "oyasumi@gmail.com")
         
       end
     
