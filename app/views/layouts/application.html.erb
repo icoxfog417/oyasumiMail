@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OyasumiMail</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<% if user_signed_in? %>
+	<ul class="nav pull-right">
+		<li><%= link_to current_user.email,edit_user_registration_path %></li>
+	</ul>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

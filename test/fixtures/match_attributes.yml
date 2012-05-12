@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sex: 1
+  age_range: 1
+  type: 
+
+two:
+  sex: 1
+  age_range: 1
+  type: 
