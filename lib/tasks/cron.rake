@@ -9,7 +9,7 @@ task :cron  => :environment do
       end
 
       mail = OyasumiMailer.oyasumi_mail(u)
-      if mail != nil || mail.to != nil 
+      if mail != nil && mail.to != nil 
         mail.deliver()
         i += 1
       end
