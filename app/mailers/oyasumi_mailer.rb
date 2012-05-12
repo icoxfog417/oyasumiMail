@@ -23,7 +23,7 @@ class OyasumiMailer < ActionMailer::Base
         message_number = rand(messages.count)
         your_mail = mail(:to => user.email , :subject => messages[message_number].title,
                                              :body => messages[message_number].body,
-                                             :from => "oyasumi@gmail.com")
+                                             :from => "icoxfog417@gmail.com")
         
       end
     
