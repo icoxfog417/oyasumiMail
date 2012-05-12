@@ -31,7 +31,7 @@
           <a class="brand" href="/">OyasumiMail</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li style="margin-right:50px"><%= link_to 'New Message', new_message_path %></li>
+              <li class="nav " style="margin-right:30px"></li>
               <% if user_signed_in? %>
               	<ul class="nav pull-right">
           			<li><%= link_to "Welcome! [ " + current_user.username + " ] ",edit_user_registration_path %></li>

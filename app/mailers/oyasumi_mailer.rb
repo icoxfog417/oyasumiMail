@@ -30,7 +30,7 @@ class OyasumiMailer < ActionMailer::Base
 
         your_mail = mail(:to => user.email , :subject => messages[message_number].title,
                                              :body => (messages[message_number].body + "\n\n Link -> " + @url),
-                                             :from => "icoxfog417@gmail.com")
+                                             :from => "noreply@oyasumimail.com")
         
       end      
     end
