@@ -66,13 +66,13 @@ class MessagesController < ApplicationController
   def update
     @message = Message.find(params[:id])
     
-    if current_user.id = @message.user_id 
+    if current_user.id == @message.user_id 
       @message.attributes = params[:message]
     else
       if @message.evaluate == nil 
         @message.evaluate = 1
       else
-        @message.evaluate +=1
+        @message.evaluate += 1
       end
     end
     
@@ -80,7 +80,13 @@ class MessagesController < ApplicationController
       #if @message.update_attributes(params[:message])
       if @message.save
         #format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.html { redirect_to messages_url, notice: 'Message was successfully updated.' }
+
+        if current_user.id == @message.user_id 
+          format.html { redirect_to messages_url, notice: 'Message was successfully updated.' }
+        else
+          format.html { redirect_to @message, notice: 'Message was successfully updated.' }        
+        end
+        
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
