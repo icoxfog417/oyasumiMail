@@ -8,7 +8,7 @@ task :cron  => :environment do
         break; #for free limit ...
       end
 
-      OyasumiMailer.oyasumi_mail(u)
+      OyasumiMailer.oyasumi_mail(u).deliver()
       i += 1
 
     end
