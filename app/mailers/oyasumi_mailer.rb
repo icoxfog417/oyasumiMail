@@ -29,7 +29,7 @@ class OyasumiMailer < ActionMailer::Base
         @url = "http://oyasumimail.herokuapp.com/messages/%s/edit" % messages[message_number].id
 
         your_mail = mail(:to => user.email , :subject => messages[message_number].title,
-                                             :body => (user.username +" さん\n\n" + messages[message_number].body + "\n\n Link -> " + @url),
+                                             :body => ("Dear " + user.username + "\n\n" + messages[message_number].body + "\n\n Link -> " + @url),
                                              :from => "noreply@oyasumimail.com")
         
       end      
