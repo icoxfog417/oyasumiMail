@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
     @message = Message.new
     @message.message_attribute = MessageAttribute.new
     @message.user_id = current_user.id
+    @message.evaluate = 0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,6 +50,7 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
     @message.message_attribute = MessageAttribute.new
     @message.user_id = current_user.id
+    @message.evaluate = 0
 
     respond_to do |format|
       if @message.save
@@ -69,11 +71,7 @@ class MessagesController < ApplicationController
     if current_user.id == @message.user_id 
       @message.attributes = params[:message]
     else
-      if @message.evaluate == nil 
-        @message.evaluate = 1
-      else
         @message.evaluate += 1
-      end
     end
     
     respond_to do |format|
