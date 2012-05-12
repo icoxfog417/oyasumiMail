@@ -23,10 +23,6 @@ class OyasumiMailer < ActionMailer::Base
                              )
       
       #make mail. message is selected by random !
-      puts "get message is ... "
-      puts messages
-      puts "ok?"
-      
       if messages.count > 0 
 
         message_number = rand(messages.count)
